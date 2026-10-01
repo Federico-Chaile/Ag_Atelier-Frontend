@@ -1,17 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/home'
-import Galeria from './pages/galeria'
-import SobreNosotros from './pages/sobrenosotros'
+import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ContactoModal from './components/ContactoModal'
+import FooterC from './components/FooterC'
+import NavbarC from './components/NavbarC'
+import Galeria from './pages/Galeria'
+import Home from './pages/Home'
+import SobreNosotros from './pages/SobreNosotros'
 
 function App() {
+  const [mostrarContacto, setMostrarContacto] = useState(false)
+
+  const abrirContacto = () => setMostrarContacto(true)
+  const cerrarContacto = () => setMostrarContacto(false)
+
   return (
-    <BrowserRouter>
+    <>
+      <NavbarC onContacto={abrirContacto} />
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home onContacto={abrirContacto} />} />
         <Route path="/galeria" element={<Galeria />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
       </Routes>
-    </BrowserRouter>
+
+      <FooterC onContacto={abrirContacto} />
+      <ContactoModal show={mostrarContacto} onHide={cerrarContacto} />
+    </>
   )
 }
 
