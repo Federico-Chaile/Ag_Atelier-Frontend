@@ -19,7 +19,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home onContacto={abrirContacto} />} />
-        <Route path="/galeria" element={<Galeria />} />
+        <Route path="/galeria" element={<Galeria onContacto={abrirContacto} />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
       </Routes>
 
