@@ -1,0 +1,93 @@
+export const categorias = [
+  {
+    id: 'pulseras',
+    nombre: 'Pulseras',
+    descripcion: 'Diseños para combinar y usar todos los días.',
+  },
+  {
+    id: 'aritos',
+    nombre: 'Aritos',
+    descripcion: 'Modelos simples para completar cualquier look.',
+  },
+  {
+    id: 'anillos',
+    nombre: 'Anillos',
+    descripcion: 'Detalles pequeños que hacen la diferencia.',
+  },
+  {
+    id: 'collares',
+    nombre: 'Collares',
+    descripcion: 'Piezas pensadas para distintos estilos.',
+  },
+  {
+    id: 'maquillaje',
+    nombre: 'Maquillaje',
+    descripcion: 'Una selección de productos para complementar tu estilo.',
+  },
+]
+
+export const productos = [
+  {
+    id: 1,
+    nombre: 'Pulsera de piedras',
+    precio: 10000,
+    imagen: '/img/pulsera4.png',
+    categoria: 'pulseras',
+    categoriaNombre: 'Pulseras',
+    descripcion: 'Un detalle simple para combinar con distintos estilos.',
+  },
+  {
+    id: 2,
+    nombre: 'Aritos dorados',
+    precio: 8500,
+    imagen: '/img/aritos_dor.png',
+    categoria: 'aritos',
+    categoriaNombre: 'Aritos',
+    descripcion: 'Un accesorio versátil para acompañar tu estilo.',
+  },
+  {
+    id: 3,
+    nombre: 'Aritos clásicos',
+    precio: 9500,
+    imagen: '/img/aritos1.png',
+    categoria: 'aritos',
+    categoriaNombre: 'Aritos',
+    descripcion: 'Un diseño clásico para usar todos los días.',
+  },
+  {
+    id: 4,
+    nombre: 'Aritos delicados',
+    precio: 7500,
+    imagen: '/img/aritos2.png',
+    categoria: 'aritos',
+    categoriaNombre: 'Aritos',
+    descripcion: 'Una opción delicada para un estilo más sutil.',
+  },
+  {
+    id: 5,
+    nombre: 'Anillo',
+    precio: 8500,
+    imagen: '/img/anillo1.jpg',
+    categoria: 'anillos',
+    categoriaNombre: 'Anillos',
+    descripcion: 'Un detalle elegante para completar tu look.',
+  },
+  {
+    id: 6,
+    nombre: 'Collar blanco',
+    precio: 14000,
+    imagen: '/img/collar1.png',
+    categoria: 'collares',
+    categoriaNombre: 'Collares',
+    descripcion: 'Una pieza pensada para combinar con distintos estilos.',
+  },
+  {
+    id: 7,
+    nombre: 'Producto de maquillaje',
+    precio: 8500,
+    imagen: '/img/maquillaje1.png',
+    categoria: 'maquillaje',
+    categoriaNombre: 'Maquillaje',
+    descripcion: 'Una opción seleccionada para complementar tu estilo.',
+  },
+]

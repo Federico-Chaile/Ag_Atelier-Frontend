@@ -89,3 +89,53 @@ a {
 .modal-header.bg-dark .btn-close {
   filter: invert(1);
 }
+
+/* GALERÍA */
+
+#pulseras,
+#aritos,
+#anillos,
+#collares,
+#maquillaje {
+  scroll-margin-top: 30px;
+}
+
+.producto-img {
+  height: 260px;
+  object-fit: cover;
+}
+
+.producto-card {
+  transition: transform .25s;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+}
+
+.producto-card .card-title {
+  color: var(--color-burgundy);
+}
+
+.btn-carrito {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  min-width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-burgundy) !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+  z-index: 1050;
+}
+
+.btn-carrito:hover {
+  background-color: var(--color-black) !important;
+  color: white;
+}
