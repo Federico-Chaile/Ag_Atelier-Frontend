@@ -2,7 +2,7 @@
 
 Proyecto web desarrollado para **AG Atelier**, un emprendimiento de joyería y accesorios.
 
-La aplicación fue desarrollada con **React + Vite**, utilizando React Bootstrap, React Router y componentes reutilizables para mantener una estructura clara, ordenada y responsive.
+La aplicación fue desarrollada con **React + Vite**, utilizando React Bootstrap, React Router y componentes reutilizables.
 
 ## Integrantes
 
@@ -14,14 +14,14 @@ La aplicación fue desarrollada con **React + Vite**, utilizando React Bootstrap
 
 - Página de Inicio.
 - Galería de productos por categorías.
-- Carrito de compras.
-- Cálculo de cantidades y total.
-- Envío de pedidos por WhatsApp.
+- Carrito de compras persistente.
+- Envío de pedidos mediante WhatsApp.
 - Formulario de contacto.
 - Página Sobre Nosotros.
+- Consumo de una API pública de productos.
 - Diseño responsive.
 
-## Tecnologías utilizadas
+## Tecnologías
 
 - React
 - Vite
@@ -29,31 +29,16 @@ La aplicación fue desarrollada con **React + Vite**, utilizando React Bootstrap
 - React Bootstrap
 - Bootstrap 5
 - React Router
+- Axios
+- SweetAlert2
 - CSS
 - Git y GitHub
 - Vercel
 
-## 1. Estrategias SEO
-
-Se aplicaron buenas prácticas de SEO para mejorar la estructura y el posicionamiento del sitio.
-
-Se utilizaron:
-
-- Títulos descriptivos.
-- Meta description.
-- Meta robots.
-- Idioma `es-AR`.
-- Etiquetas semánticas como `main`, `section`, `nav` y `footer`.
-- Jerarquía correcta con `h1`, `h2` y `h3`.
-- Atributos `alt` descriptivos en las imágenes.
-
-Estas prácticas ayudan a que los motores de búsqueda comprendan mejor el contenido del sitio.
-
-## 2. Components
-
-La interfaz fue dividida en componentes reutilizables para evitar repetir código y facilitar el mantenimiento.
-
-Algunos de los componentes utilizados son:
+## Estrategias SEO
+Se implementaron títulos descriptivos, metadatos, idioma `es-AR`, atributos `alt`, jerarquía de títulos y etiquetas semánticas como `main`, `section`, `nav` y `footer`.
+## Components
+La interfaz está dividida en componentes reutilizables como:
 
 - `NavbarC`
 - `FooterC`
@@ -61,15 +46,79 @@ Algunos de los componentes utilizados son:
 - `CategoriaCard`
 - `ProductoCard`
 - `CarritoModal`
+- `ProductosApi`
 
-Por ejemplo, `ProductoCard` se reutiliza para mostrar distintos productos utilizando los datos que recibe mediante props.
-
-## 3. Pages
-
-Las principales vistas de la aplicación se encuentran separadas dentro de la carpeta `pages`.
-
+## Pages
+Las vistas principales se encuentran separadas en:
 ```text
 pages/
 ├── Home.jsx
 ├── Galeria.jsx
 └── SobreNosotros.jsx
+```
+
+## map()
+Se utiliza `map()` para generar dinámicamente categorías, productos, elementos del carrito y productos obtenidos desde la API.
+## Props
+Las props permiten enviar información y funciones entre componentes. Por ejemplo, `ProductoCard` recibe el producto y la función utilizada para agregarlo al carrito.
+## React Router
+Las rutas de la aplicación están organizadas en un componente independiente.
+
+```text
+/                → Inicio
+/galeria         → Galería
+/sobre-nosotros  → Sobre Nosotros
+```
+## Hooks
+Se utiliza `useState` para manejar estados como el carrito, formularios, modales, productos de la API y estado de carga.
+Se utiliza `useEffect` para guardar el carrito en `localStorage`, navegar hacia categorías y realizar la petición a la API pública.
+## Consumo de API pública
+Se utiliza **Axios** para consultar una API pública relacionada con joyería.
+La URL se obtiene mediante:
+```javascript
+const API_URL = import.meta.env.VITE_API_URL
+```
+Los datos recibidos se almacenan con `useState` y la petición se realiza dentro de `useEffect`.
+También se implementan:
+
+- Estado de carga.
+- Manejo de errores mediante `try/catch`.
+- SweetAlert2 para mostrar errores al usuario.
+- Variable de entorno para almacenar la URL.
+
+## Variables de entorno
+
+El proyecto utiliza las siguientes variables:
+
+```env
+VITE_CARRITO_KEY=
+VITE_WHATSAPP_NUMBER=
+VITE_CONTACT_EMAIL=
+VITE_API_URL=
+```
+
+El archivo `.env` está incluido en `.gitignore` y no se sube al repositorio.
+
+## Instalación
+
+```bash
+git clone https://github.com/Federico-Chaile/Ag_Atelier-Frontend.git
+```
+
+Instalar dependencias:
+```bash
+npm install
+```
+Ejecutar:
+
+```bash
+npm run dev
+```
+Verificar el proyecto:
+
+```bash
+npm run lint
+npm run build
+```
+## Deploy
+El proyecto se despliega mediante **Vercel**.
