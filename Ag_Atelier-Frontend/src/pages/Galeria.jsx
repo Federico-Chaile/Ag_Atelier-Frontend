@@ -6,34 +6,87 @@ import ProductoCard from '../components/ProductoCard'
 import { categorias, productos } from '../data/productos'
 
 function Galeria({ onContacto }) {
-  const [carrito, setCarrito] = useState([])
+  const carritoKey = import.meta.env.VITE_CARRITO_KEY
+  const [carrito, setCarrito] = useState(() => {
+    try {
+      if (!carritoKey) {
+        console.error('No se encontró VITE_CARRITO_KEY en el archivo .env')
+        return []
+      }
+
+      const carritoGuardado = localStorage.getItem(carritoKey)
+
+      return carritoGuardado
+        ? JSON.parse(carritoGuardado)
+        : []
+    } catch (error) {
+      console.error('Error al cargar el carrito:', error)
+      return []
+    }
+  })
+
   const [mostrarCarrito, setMostrarCarrito] = useState(false)
+
   const location = useLocation()
 
   useEffect(() => {
-    if (!location.hash) return
+    try {
+      if (!carritoKey) return
 
-    const id = location.hash.replace('#', '')
-    const seccion = document.getElementById(id)
+      localStorage.setItem(
+        carritoKey,
+        JSON.stringify(carrito)
+      )
+    } catch (error) {
+      console.error('Error al guardar el carrito:', error)
+    }
+  }, [carrito, carritoKey])
 
-    if (seccion) {
-      seccion.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  useEffect(() => {
+    try {
+      if (!location.hash) return
+
+      const id = location.hash.replace('#', '')
+      const seccion = document.getElementById(id)
+
+      if (seccion) {
+        seccion.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    } catch (error) {
+      console.error(
+        'Error al navegar a la categoría:',
+        error
+      )
     }
   }, [location.hash])
 
   const agregarAlCarrito = (producto) => {
     setCarrito((carritoActual) => {
-      const productoExistente = carritoActual.find((item) => item.id === producto.id)
+      const productoExistente = carritoActual.find(
+        (item) => item.id === producto.id
+      )
 
       if (productoExistente) {
         return carritoActual.map((item) =>
           item.id === producto.id
-            ? { ...item, cantidad: item.cantidad + 1 }
+            ? {
+              ...item,
+              cantidad: item.cantidad + 1,
+            }
             : item
         )
       }
 
-      return [...carritoActual, { ...producto, cantidad: 1 }]
+      return [
+        ...carritoActual,
+        {
+          ...producto,
+          cantidad: 1,
+        },
+      ]
     })
   }
 
@@ -51,11 +104,14 @@ function Galeria({ onContacto }) {
       <section className="py-5 border-bottom">
         <Container>
           <div className="bg-dark text-white rounded-4 shadow p-4 p-md-5 text-center">
+
             <p className="text-uppercase small fw-semibold text-white-50 mb-2">
               AG Atelier
             </p>
 
-            <h1 className="display-4 fw-semibold mb-3">Nuestra colección</h1>
+            <h1 className="display-4 fw-semibold mb-3">
+              Nuestra colección
+            </h1>
 
             <p className="lead text-white-50 mx-auto mb-4">
               Explorá nuestros accesorios y encontrá ese detalle que mejor acompañe tu estilo.
@@ -72,29 +128,36 @@ function Galeria({ onContacto }) {
                 </a>
               ))}
             </div>
+
           </div>
         </Container>
       </section>
 
       {categorias.map((categoria, indice) => {
         const productosCategoria = productos.filter(
-          (producto) => producto.categoria === categoria.id
+          (producto) =>
+            producto.categoria === categoria.id
         )
 
         return (
           <section
             key={categoria.id}
             id={categoria.id}
-            className={`py-5 ${indice % 2 !== 0 ? 'bg-light' : ''}`}
+            className={`py-5 ${indice % 2 !== 0 ? 'bg-light' : ''
+              }`}
           >
             <Container>
+
               <div className="d-flex justify-content-between align-items-end border-bottom pb-3 mb-4">
+
                 <div>
                   <Badge bg="dark" className="mb-2">
                     Colección
                   </Badge>
 
-                  <h2 className="display-6 mb-1">{categoria.nombre}</h2>
+                  <h2 className="display-6 mb-1">
+                    {categoria.nombre}
+                  </h2>
 
                   <p className="text-secondary mb-0">
                     {categoria.descripcion}
@@ -103,8 +166,11 @@ function Galeria({ onContacto }) {
 
                 <span className="text-secondary d-none d-md-block">
                   {productosCategoria.length}{' '}
-                  {productosCategoria.length === 1 ? 'producto' : 'productos'}
+                  {productosCategoria.length === 1
+                    ? 'producto'
+                    : 'productos'}
                 </span>
+
               </div>
 
               <Row className="g-4">
@@ -123,6 +189,7 @@ function Galeria({ onContacto }) {
                   </Col>
                 ))}
               </Row>
+
             </Container>
           </section>
         )
@@ -130,23 +197,44 @@ function Galeria({ onContacto }) {
 
       <section className="py-5">
         <Container>
+
           <Row className="align-items-center g-4 py-4 border-top border-bottom">
-            <Col xs={12} lg={8} className="text-center text-lg-start">
+
+            <Col
+              xs={12}
+              lg={8}
+              className="text-center text-lg-start"
+            >
               <p className="text-uppercase small fw-semibold galeria-marca mb-2">
                 ¿Necesitás ayuda?
               </p>
-              <h2 className="display-6 mb-2">¿Buscás algo en particular?</h2>
+
+              <h2 className="display-6 mb-2">
+                ¿Buscás algo en particular?
+              </h2>
+
               <p className="text-secondary mb-0">
                 Consultanos por disponibilidad o por algún accesorio que estés buscando.
               </p>
             </Col>
 
-            <Col xs={12} lg={4} className="text-center text-lg-end">
-              <Button variant="dark" size="lg" className="px-4" onClick={onContacto}>
+            <Col
+              xs={12}
+              lg={4}
+              className="text-center text-lg-end"
+            >
+              <Button
+                variant="dark"
+                size="lg"
+                className="px-4"
+                onClick={onContacto}
+              >
                 Contactanos
               </Button>
             </Col>
+
           </Row>
+
         </Container>
       </section>
 
