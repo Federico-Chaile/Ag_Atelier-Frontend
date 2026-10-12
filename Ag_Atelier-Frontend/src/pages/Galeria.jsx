@@ -3,6 +3,7 @@ import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import CarritoModal from '../components/CarritoModal'
 import ProductoCard from '../components/ProductoCard'
+import ProductosApi from '../components/ProductosApi'
 import { categorias, productos } from '../data/productos'
 
 function Galeria({ onContacto }) {
@@ -194,6 +195,25 @@ function Galeria({ onContacto }) {
           </section>
         )
       })}
+      <section className="py-5 bg-light">
+        <Container>
+          <div className="text-center mb-5">
+            <p className="text-uppercase small fw-semibold galeria-marca mb-2">
+              Inspiración
+            </p>
+
+            <h2 className="display-6 mb-2">
+              Inspiración en joyería
+            </h2>
+
+            <p className="text-secondary mb-0">
+              Una selección externa de productos utilizada como inspiración.
+            </p>
+          </div>
+
+          <ProductosApi />
+        </Container>
+      </section>
 
       <section className="py-5">
         <Container>

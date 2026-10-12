@@ -139,3 +139,7 @@ a {
   background-color: var(--color-black) !important;
   color: white;
 }
+.producto-api-img {
+  height: 250px;
+  object-fit: contain;
+}
