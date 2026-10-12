@@ -1,11 +1,8 @@
 import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
 import ContactoModal from './components/ContactoModal'
 import FooterC from './components/FooterC'
 import NavbarC from './components/NavbarC'
-import Galeria from './pages/Galeria'
-import Home from './pages/Home'
-import SobreNosotros from './pages/SobreNosotros'
+import Rutas from './components/routes/Rutas'
 
 function App() {
   const [mostrarContacto, setMostrarContacto] = useState(false)
@@ -15,15 +12,10 @@ function App() {
 
   return (
     <>
-      <NavbarC onContacto={abrirContacto} />
+      <NavbarC onContacto={abrirContacto}/>
+      <Rutas onContacto={abrirContacto}/>
+      <FooterC onContacto={abrirContacto}/>
 
-      <Routes>
-        <Route path="/" element={<Home onContacto={abrirContacto} />} />
-        <Route path="/galeria" element={<Galeria onContacto={abrirContacto} />} />
-        <Route path="/sobre-nosotros" element={<SobreNosotros />} />
-      </Routes>
-
-      <FooterC onContacto={abrirContacto} />
       <ContactoModal show={mostrarContacto} onHide={cerrarContacto} />
     </>
   )
