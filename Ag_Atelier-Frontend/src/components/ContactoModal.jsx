@@ -33,7 +33,7 @@ function ContactoModal({ show, onHide }) {
       return
     }
 
-    const destinatario = 'agatelier17@gmail.com'
+    const destinatario = import.meta.env.VITE_CONTACT_EMAIL
     const asunto = `Nueva consulta web de: ${datos.nombre}`
     const cuerpo = `¡Hola AG Atelier!\n\nTienen una nueva consulta desde la página web:\n\nNombre: ${datos.nombre}\nEmail: ${datos.email}\nTeléfono: ${datos.telefono}\n\nMensaje:\n${datos.mensaje}`
 

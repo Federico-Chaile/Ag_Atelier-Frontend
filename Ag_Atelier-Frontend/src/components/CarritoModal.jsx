@@ -20,7 +20,7 @@ function CarritoModal({ show, onHide, carrito, onVaciar }) {
 
     mensaje += `\nTotal: $${total.toLocaleString('es-AR')}`
 
-    const numeroWhatsApp = '5492617590562'
+    const numeroWhatsApp = import.meta.env.VITE_WHATSAPP_NUMBER
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`
 
     window.open(url, '_blank', 'noopener,noreferrer')
